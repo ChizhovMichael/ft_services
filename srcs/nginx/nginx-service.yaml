@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: nginx-service
   annotations:
-    metallb.universe.tf/address-pool: default
     metallb.universe.tf/allow-shared-ip: shared
   labels:
     app: nginx
@@ -11,15 +10,15 @@ spec:
   selector:
     app: nginx
   ports:
-    - name: ssh
+    - name: nginx-ssh
       protocol: TCP
       port: 22
       targetPort: 22
-    - name: http
+    - name: nginx-http
       protocol: TCP
       port: 80
       targetPort: 80
-    - name: https
+    - name: nginx-https
       protocol: TCP
       port: 443
       targetPort: 443

@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  labels:
+    app: nginx
 spec:
   selector:
     matchLabels:
@@ -18,8 +20,8 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 22
-          name: ssh
+          name: nginx-ssh
         - containerPort: 80
-          name: http
+          name: nginx-http
         - containerPort: 443
-          name: https
+          name: nginx-https

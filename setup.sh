@@ -4,24 +4,34 @@ minikube delete
 minikube start --driver=docker
 
 # work in minikube
-export minikube_ip=$(minikube ip)
 eval $(minikube docker-env)
 
 # addons
+minikube addons enable metrics-server
 minikube addons enable dashboard
 minikube addons enable metallb
 
 # metallb setting
-envsubst < ./srcs/metallb.yaml | kubectl apply -f -
+kubectl apply -f ./srcs/metallb.yaml
 
 # images
 docker build -t nginx-image ./srcs/nginx/
+docker build -t mysql-image ./srcs/mysql/
+docker build -t wordpress-image ./srcs/wordpress/
+docker build -t phpmyadmin-image ./srcs/phpmyadmin/
+docker build -t ftps-image ./srcs/ftps/
+docker build -t grafana-image ./srcs/grafana/
+docker build -t influxdb-image ./srcs/influxdb/
 
-# Deployments
-kubectl apply -f ./srcs/nginx/nginx-deployment.yaml
-
-# Services
-kubectl apply -f ./srcs/nginx/nginx-service.yaml
-
+# Deployments and Serive 
+kubectl apply -f ./srcs/influxdb/
+kubectl apply -f ./srcs/mysql/
+sleep 30
+kubectl apply -f ./srcs/ftps/
+kubectl apply -f ./srcs/nginx/
+kubectl apply -f ./srcs/grafana/
+kubectl apply -f ./srcs/wordpress/
+kubectl apply -f ./srcs/phpmyadmin/
 # End
 kubectl get svc
+minikube dashboard

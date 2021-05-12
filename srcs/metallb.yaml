@@ -9,4 +9,4 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - $minikube_ip-$minikube_ip
+      - 192.168.49.3-192.168.49.3
