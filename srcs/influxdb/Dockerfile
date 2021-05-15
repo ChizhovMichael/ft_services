@@ -1,7 +1,7 @@
-FROM alpine:latest
+FROM alpine:3.12
 
 RUN apk update && apk upgrade
-RUN apk add supervisor influxdb curl telegraf
+RUN apk add supervisor influxdb curl telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 # bash and rc-service
 RUN apk add bash openrc
 VOLUME ["/sys/fs/cgroup"]

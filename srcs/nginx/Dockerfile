@@ -1,7 +1,7 @@
-FROM alpine:latest
+FROM alpine:3.12
 
 RUN apk update && apk upgrade
-RUN apk add openssl nginx openssh supervisor telegraf
+RUN apk add openssl nginx openssh supervisor telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 VOLUME ["/sys/fs/cgroup"]
 # bash
 RUN apk add --no-cache bash

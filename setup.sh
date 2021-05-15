@@ -1,7 +1,7 @@
 #minikube start
 minikube stop
 minikube delete
-minikube start --driver=docker
+minikube start --driver=virtualbox
 
 # work in minikube
 eval $(minikube docker-env)
