@@ -1,7 +1,10 @@
 #minikube start
 minikube stop
 minikube delete
-minikube start --driver=virtualbox
+minikube config set memory 4096
+minikube config set cpus 4
+minikube config set vm-driver virtualbox
+minikube start
 
 # work in minikube
 eval $(minikube docker-env)
