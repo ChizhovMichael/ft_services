@@ -1,10 +1,7 @@
 #minikube start
 minikube stop
 minikube delete
-minikube config set memory 4096
-minikube config set cpus 4
-minikube config set vm-driver virtualbox
-minikube start
+minikube start --cpus=4 --memory=4096 --vm-driver=virtualbox
 
 # work in minikube
 eval $(minikube docker-env)
@@ -37,3 +34,4 @@ kubectl apply -f ./srcs/wordpress/
 kubectl apply -f ./srcs/phpmyadmin/
 # End
 kubectl get svc
+minikube dashboard
