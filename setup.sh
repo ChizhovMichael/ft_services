@@ -34,4 +34,3 @@ kubectl apply -f ./srcs/wordpress/
 kubectl apply -f ./srcs/phpmyadmin/
 # End
 kubectl get svc
-minikube dashboard
